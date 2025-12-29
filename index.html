@@ -1,136 +1,163 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Happy Birthday Doctor 🎉</title>
+  <title>Happy Birthday, Dr. Shirin 🎉</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
-    body {
-      background: linear-gradient(to bottom, #eef6ff, #ffe9f2);
-    }
-
-    /* Floating balloons */
-    .balloon {
-      width: 40px;
-      height: 55px;
-      border-radius: 50% 50% 45% 45%;
-      position: absolute;
-      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-      animation: float 6s ease-in-out infinite;
-    }
-    .balloon:after {
-      content: "";
-      width: 2px;
-      height: 30px;
-      background: #aaa;
-      position: absolute;
-      left: 50%;
-      top: 55px;
-      transform: translateX(-50%);
-    }
-    @keyframes float {
-      0%   { transform: translateY(60px); }
-      50%  { transform: translateY(-80px); }
-      100% { transform: translateY(60px); }
-    }
-
-    /* Floating icons */
-    .floaty {
-      animation: bob 4s ease-in-out infinite;
-    }
-    @keyframes bob {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-15px); }
-    }
+    body { background: linear-gradient(to bottom, #eef6ff, #ffe9f2); }
+    .balloon{width:40px;height:55px;border-radius:50% 50% 45% 45%;position:absolute;
+      box-shadow:0 10px 15px rgba(0,0,0,.1);animation:float 6s ease-in-out infinite;}
+    .balloon:after{content:"";width:2px;height:30px;background:#aaa;position:absolute;
+      left:50%;top:55px;transform:translateX(-50%);}
+    @keyframes float{0%{transform:translateY(60px)}50%{transform:translateY(-80px)}100%{transform:translateY(60px)}}
+    .floaty{animation:bob 4s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+    .overlay{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;z-index:50}
+    .hidden{display:none}
+    #fw{position:fixed;inset:0;pointer-events:none;z-index:40}
   </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center p-6 overflow-hidden">
 
-  <!-- Balloons -->
-  <div class="balloon bg-pink-300 left-10 top-24"></div>
-  <div class="balloon bg-sky-300 left-1/2 top-16" style="animation-delay: .8s"></div>
-  <div class="balloon bg-violet-300 right-12 top-28" style="animation-delay: 1.4s"></div>
+  <canvas id="fw"></canvas>
 
-  <!-- Card -->
+  <div class="balloon bg-pink-300 left-10 top-24"></div>
+  <div class="balloon bg-sky-300 left-1/2 top-16" style="animation-delay:.8s"></div>
+  <div class="balloon bg-violet-300 right-12 top-28" style="animation-delay:1.4s"></div>
+
   <div class="backdrop-blur-xl bg-white/80 border border-white/50 rounded-3xl shadow-xl max-w-xl w-full text-center p-8 space-y-6">
 
     <h1 class="text-3xl font-bold text-pink-500 flex justify-center gap-2 items-center">
-      <span>🎈</span> Happy Birthday, Doctor! 🎉
+      🎈 Happy Birthday, <span class="text-rose-500">Dr. Shirin</span>! 🎉
     </h1>
+
+    <p class="text-gray-500 -mt-2">A doctor with a beautiful heart 💗</p>
+
+    <!-- Personal message -->
+    <p class="text-pink-600 font-semibold">
+      Happy birthday Jadiyaaa 💖
+    </p>
 
     <!-- Countdown -->
     <div class="bg-white/70 rounded-2xl p-5 shadow-inner">
-      <p class="text-gray-600 text-sm mb-2">Countdown to the 31st</p>
+      <p class="text-gray-600 text-sm mb-2">Countdown to 31 December</p>
+      <div id="timer" class="grid grid-cols-4 gap-3"></div>
+    </div>
 
-      <div id="timer" class="grid grid-cols-4 gap-3">
-        <!-- JS fills values -->
-      </div>
+    <!-- Slideshow -->
+    <div class="relative rounded-2xl overflow-hidden shadow">
+      <img id="slide" class="w-full"
+           src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800" alt="slide" />
     </div>
 
     <p class="text-gray-700 leading-relaxed">
-      You heal people every day with your knowledge, kindness, and smile —
-      today is your day to feel just as cared for. Wishing you laughter, love,
-      and magical surprises! 💖
+      Dear <strong>Dr. Shirin</strong>, you heal with compassion and kindness.
+      May this year bring joy, peace, and beautiful surprises. ✨
     </p>
 
     <div class="grid grid-cols-3 gap-4">
-      <div class="rounded-2xl bg-sky-100 py-4 shadow floaty">🩺<p class="text-sm font-medium mt-1">Doctor Vibes</p></div>
-      <div class="rounded-2xl bg-pink-100 py-4 shadow floaty">❤️<p class="text-sm font-medium mt-1">Lots of Love</p></div>
-      <div class="rounded-2xl bg-emerald-100 py-4 shadow floaty">💉<p class="text-sm font-medium mt-1">Dose of Fun</p></div>
+      <div class="rounded-2xl bg-sky-100 py-4 shadow floaty">🩺<p class="text-sm font-medium mt-1">Healing Hands</p></div>
+      <div class="rounded-2xl bg-pink-100 py-4 shadow floaty">❤️<p class="text-sm font-medium mt-1">Loved Always</p></div>
+      <div class="rounded-2xl bg-emerald-100 py-4 shadow floaty">💉<p class="text-sm font-medium mt-1">Dose of Joy</p></div>
     </div>
 
-    <button
-      onclick="popConfetti()"
-      class="mt-4 px-5 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow hover:shadow-lg active:scale-95 transition">
-      Celebrate Again 🎊
-    </button>
+    <div class="flex flex-wrap gap-3 justify-center pt-2">
+      <button onclick="popConfetti()" class="px-4 py-2 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow">Celebrate Again 🎊</button>
+      <button onclick="toggleMusic()" class="px-4 py-2 rounded-2xl bg-sky-500 text-white shadow">🎵 Play Music</button>
+      <button onclick="revealNote()" class="px-4 py-2 rounded-2xl bg-amber-500 text-white shadow">💌 Secret Note</button>
+    </div>
 
     <p class="text-sm text-gray-500 mt-3">
-      Made with ❤️ for your birthday on the 31st
+      Made with ❤️ — for <strong>Dr. Shirin</strong> — birthday on 31 December
     </p>
   </div>
 
-  <script>
-    // Confetti once on load
-    confetti({ particleCount: 140, spread: 80, origin: { y: 0.7 } });
+  <!-- Popup -->
+  <div id="popup" class="overlay">
+    <div class="bg-white rounded-3xl p-6 text-center max-w-sm shadow-xl">
+      <h2 class="text-xl font-bold text-pink-600 mb-2">Surprise! 🎉</h2>
+      <p class="text-gray-600 mb-4">
+        This page was created especially for you, Dr. Shirin.  
+        Tap below to begin the celebration!
+      </p>
+      <button onclick="closePopup()" class="px-5 py-2 rounded-2xl bg-pink-500 text-white font-semibold">
+        Start Party 🎈
+      </button>
+    </div>
+  </div>
 
-    function popConfetti() {
+  <!-- Music -->
+  <audio id="music"
+    src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d4f7390e0e.mp3?filename=birthday-10884.mp3">
+  </audio>
+
+  <script>
+    // Confetti
+    confetti({ particleCount: 140, spread: 80, origin: { y: 0.7 } });
+    function popConfetti(){
       confetti({ particleCount: 220, spread: 120, startVelocity: 35, origin: { y: 0.7 } });
     }
 
-    // Countdown
-    function getTargetDate() {
+    // 🎯 Countdown specifically to **31 December**
+    function getTargetDate(){
       const now = new Date();
-      let target = new Date(now.getFullYear(), now.getMonth(), 31, 0, 0, 0);
-      if (now.getDate() > 31) target = new Date(now.getFullYear(), now.getMonth() + 1, 31, 0, 0, 0);
+      let target = new Date(now.getFullYear(), 11, 31, 0, 0, 0); // month 11 = December
+      if (now > target) target = new Date(now.getFullYear() + 1, 11, 31, 0, 0, 0);
       return target;
     }
 
-    function renderTimer() {
+    function renderTimer(){
       const t = getTargetDate() - new Date();
-      const d = Math.floor(t / (1000*60*60*24));
-      const h = Math.floor((t / (1000*60*60)) % 24);
-      const m = Math.floor((t / (1000*60)) % 60);
-      const s = Math.floor((t / 1000) % 60);
+      const d=Math.floor(t/86400000),
+            h=Math.floor((t/3600000)%24),
+            m=Math.floor((t/60000)%60),
+            s=Math.floor((t/1000)%60);
 
-      document.getElementById("timer").innerHTML = `
+      timer.innerHTML = `
         <div class="rounded-2xl bg-pink-100 py-3"><p class="text-2xl font-bold text-pink-600">${d}</p><p class="text-xs uppercase">Days</p></div>
         <div class="rounded-2xl bg-pink-100 py-3"><p class="text-2xl font-bold text-pink-600">${h}</p><p class="text-xs uppercase">Hours</p></div>
         <div class="rounded-2xl bg-pink-100 py-3"><p class="text-2xl font-bold text-pink-600">${m}</p><p class="text-xs uppercase">Minutes</p></div>
-        <div class="rounded-2xl bg-pink-100 py-3"><p class="text-2xl font-bold text-pink-600">${s}</p><p class="text-xs uppercase">Seconds</p></div>
-      `;
+        <div class="rounded-2xl bg-pink-100 py-3"><p class="text-2xl font-bold text-pink-600">${s}</p><p class="text-xs uppercase">Seconds</p></div>`;
+    }
+    renderTimer(); setInterval(renderTimer,1000);
+
+    // Slideshow (replace with real photos later)
+    const pics=[
+      "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800",
+      "https://images.unsplash.com/photo-1530023367847-a683933f4172?w=800",
+      "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800"
+    ];
+    let idx=0; setInterval(()=>{ idx=(idx+1)%pics.length; slide.src=pics[idx]; }, 3500);
+
+    function closePopup(){ popup.classList.add("hidden"); popConfetti(); }
+
+    // Music
+    let playing=false;
+    function toggleMusic(){ playing ? music.pause() : music.play(); playing=!playing; }
+
+    // 💌 Secret note including your message
+    function revealNote(){
+      alert("Happy birthday Jadiyaaa 💖\n\nDear Shirin — you make the world brighter just by being in it.");
+      popConfetti();
     }
 
-    renderTimer();
-    setInterval(renderTimer, 1000);
+    // Fireworks at midnight
+    setInterval(()=>{
+      const n=new Date();
+      if(n.getHours()===0 && n.getMinutes()===0 && n.getSeconds()<2){
+        for(let i=0;i<25;i++){
+          confetti({startVelocity:45, spread:360, ticks:90, origin:{x:Math.random(), y:Math.random()*0.3}});
+        }
+      }
+    },1000);
   </script>
+
 </body>
 </html>
